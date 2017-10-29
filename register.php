@@ -1,62 +1,9 @@
 <?php
-if(!empty($_POST["register-user"])) {
-	/* Form Required Field Validation */
-	foreach($_POST as $key=>$value) {
-		if(empty($_POST[$key])) {
-		$error_message = "All Fields are required";
-		break;
-		}
-	}
-	/* Password Matching Validation */
-	if($_POST['password'] != $_POST['confirm_password']){ 
-	$error_message = 'Passwords should be same<br>'; 
-	}
-
-	/* Email Validation */
-	if(!isset($error_message)) {
-		if (!filter_var($_POST["userEmail"], FILTER_VALIDATE_EMAIL)) {
-		$error_message = "Invalid Email Address";
-		}
-	}
-
-	/* Validation to check if Terms and Conditions are accepted */
-	if(!isset($error_message)) {
-		if(!isset($_POST["terms"])) {
-		$error_message = "Accept Terms and Conditions to Register";
-		}
-	}
-
-	if(!isset($error_message)) {
-		require_once("connection/koneksi.php");
-		$db_handle = new koneksi();
-		$fullname = mysqli_real_escape_string($db_handle->connectDB(),$_POST["fullName"]);
-		$email_user = mysqli_real_escape_string($db_handle->connectDB(),$_POST["userEmail"]);
-		$username = mysqli_real_escape_string($db_handle->connectDB(),$_POST["userName"]);
-		$password_user = md5(mysqli_real_escape_string($db_handle->connectDB(),$_POST["password"]));
-		$addr_eth = mysqli_real_escape_string($db_handle->connectDB(),$_POST["ethereum_address"]);
-		$question = mysqli_real_escape_string($db_handle->connectDB(),$_POST["question"]);
-		$answer = mysqli_real_escape_string($db_handle->connectDB(),$_POST["answer_question"]);
-		
-		
-		$query_insert = "INSERT INTO tbl_register values 
-						('$username'
-						,'$fullname'
-						,'$email_user'
-						,'$password_user'
-						,'$addr_eth'
-						,'$question'
-						,'$answer')";
-		$result = $db_handle->insertQuery($query_insert);
-		if(!empty($result)) {
-			$error_message = "";
-			$success_message = "You have registered successfully!";	
-			unset($_POST);
-			header('Location:register.php');
-		} else {
-			$error_message = "Problem in registration. Try Again!";	
-		}
-	}
+if(!isset($_SESSION))
+{
+		session_start();
 }
+$upline_value=$_SESSION['getupline'];
 ?>
 <!-- kode html -->
 <!DOCTYPE html>
@@ -122,6 +69,54 @@ if(!empty($_POST["register-user"])) {
   small {
 	font-size: 9px;
 }
+input[type=text]{
+    width:70%;
+    border:2px solid #aaa;
+    border-radius:4px;
+    margin:8px 0;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+	font-size:12px;
+	text-align:left;
+  }
+
+
+input[type=password]{
+    width:70%;
+    border:2px solid #aaa;
+    border-radius:4px;
+    margin:8px 258;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+    font-size:12px;
+    text-align:lift;
+  }
+
+.question{
+    width:70%;
+    border:2px solid #aaa;
+    border-radius:4px;
+    margin:8px 258;
+    outline:none;
+    padding:8px;
+    box-sizing:border-box;
+    transition:.3s;
+    font-size:12px;
+    text-align:right;
+  }
+  
+  input[type=text]:focus{
+    border-color:#FC0;
+    box-shadow:0 0 8px 0 #FC0;
+  }
+  form {
+    display: inline-block;
+    text-align: center;
+}
   </style>
   
   <script type='text/javascript'>
@@ -151,17 +146,17 @@ if(!empty($_POST["register-user"])) {
 		}
 		return true;
 	};
-
-	$(document).ready(function(){
+	
+	var fnCheckUsername = function(obj)
+	{
+		var returnVal = false;
 		
-		$('#userid').keyup(function(){
-			this.value = this.value.toUpperCase();
-			$.ajax({
-				url:'controller/checkusername.php',
+		$.ajax({
+				url:'checkusername.php',
 				type:'POST',
 				dataType:'json',
 				data:{
-					username : $(this).val()
+					username : obj
 				},
 				success:function(data)
 				{
@@ -170,11 +165,11 @@ if(!empty($_POST["register-user"])) {
 					{
 						$('#exist_username').show();
 						$('.btnRegister').prop('disabled',true);
-						
 					}
 					else{
 						$('#exist_username').hide();
 						$('.btnRegister').removeAttr('disabled');
+						returnVal=true;
 					}
 				},
 				error:function(xhr,textStatus,errormessage)
@@ -188,34 +183,50 @@ if(!empty($_POST["register-user"])) {
 					
 				}
 			});
+		return returnVal;
+	}
+	
+	var checketh_addres = function(obj)
+	{
+		var val_return = false;
+		var results_addr = isAddress(obj);
+			if(results_addr==false)
+			{
+				$('.btnRegister').prop('disabled',true);
+				$('#emeth').text('incorrect value');
+			}
+			else{
+				$('.btnRegister').removeAttr('disabled');
+				$('#emeth').text('');
+				val_return=true;
+			}
+		return val_return;
+	}
+	
+	var ret_checkusername;
+	var ret_checketh;
+	
+	$(document).ready(function(){
+		
+		$('#userid').keyup(function(){
+			refnCheckUsername($(this).val());
+		}).
+		change(function(){
+			fnCheckUsername($(this).val());
 		});
 		
 		$('#eth_address').keyup(function()
 		{
-			var results_addr = isAddress($(this).val());
-			if(results_addr==false)
-			{
-				$('.btnRegister').prop('disabled',true);
-				$('#emeth').text('incorrect value');
-			}
-			else{
-				$('.btnRegister').removeAttr('disabled');
-				$('#emeth').text('');
-			}
+			checketh_addres($(this).val());
 		})
 		.change(function()
 		{
-			var results_addr = isAddress($(this).val());
-			console.log(results_addr);
-			if(results_addr==false)
-			{
-				$('.btnRegister').prop('disabled',true);
-				$('#emeth').text('incorrect value');
-			}
-			else{
-				$('.btnRegister').removeAttr('disabled');
-				$('#emeth').text('');
-			}
+			checketh_addres($(this).val());
+		});
+		$('#sec_ques').change(function()
+		{
+			fnCheckUsername($('#userid').val());
+			checketh_addres($('#eth_address').val());
 		});
 		
 	});
@@ -227,110 +238,91 @@ if(!empty($_POST["register-user"])) {
 include('master_nav.php');
 ?>
 
+
 <div class="jumbotron">
   <div class="container text-center">
-    <h1>Become A Minionaire</h1>      
-    <p>use good and correct data...</p>
+    <h1>Become A Minionaire</h1>
   </div>
 </div>
 <footer class="container-fluid text-center">
  <p>
- <?php 
-	if(!empty($success_message)) {	
-print "<div class='success-message'>";
-	if(isset($success_message)) echo $success_message."</div>";
- }
-if(!empty($error_message)) {
-print '<div class="error-message">';
-	if(isset($error_message)) echo $error_message.'</div>';
-}
-?>
 
-<form name="frmRegistration" method="post" action="register.php" autocomplete="off">
-<table align="center" border="0" width="10%" class="demo-table" >
-<tr>
-<td bgcolor="#FFCC00"> <h3 class="Arial">Data General </h3></td>
-</tr>
-<tr>
-<td><p align="left">Full Name:</p>
-  <p>
-  <input type="text" class="demoInputBox" name="fullName"  placeholder="Enter Your Name*" onkeyup="this.value = this.value.toUpperCase()">
-  </p></td>
-</tr>
-<tr>
-<td><p align="left">Email Address:
-  </p>
-  <p>
-    <input type="text" class="demoInputBox" name="userEmail" placeholder="Your@gmail.com*">
-  </p></td>
-</tr>
-<tr>
-<td bgcolor="#FFCC00"><h3 class="Arial">Acount Data</h3></td>
-</tr>
-<tr>
-<td><p align="left">Username:</p>
-  <p>
-  <input type="text" class="demoInputBox" id="userid" name="userName" placeholder="Enter Your Name*">
-  </p>
-  <h6 class="show"  align="left"><em>( Username must all alphabet and no space )</em></h6>
-  <h6 class="show" align="left"><em id="exist_username" style="display:none;color:red;" >( Username already exist )</em></h6>
-  </td>
-</tr>
-<tr>
-<td><p align="left">Password</p>
-  <p>
-  <input type="password" class="demoInputBox" name="password" value="" placeholder="Your Strong Password*">
-  </p></td>
-</tr>
-<tr>
-<td><p align="left">Confirm Password
-  </p>
-  <p>
-    <input type="password" class="demoInputBox" name="confirm_password" value="" placeholder="Password one more time*">
-  </p></td>
-</tr>
-<tr>
-<td bgcolor="#FFCC00"><h3 class="Arial">Payment Options </h3></td>
-</tr>
-<tr>
-<td>
-		<p align="left">Your ethereum Address:</p>
-	  <p>
-	  <input type="text" class="demoInputBox" id="eth_address" name="ethereum_address" placeholder="Ex: 0xe99356bde974bbe08721d77712168fa070aa8da4*">
-	  <h6 class="show" align="left" style="color:red;"><em id="emeth"></em></h6>
-	  </p>
- </td>
-</tr> 
-<tr>
-<td bgcolor="#FFCC00"><h3 class="Arial">Security </h3></td>
-</tr>
-<tr>
-<td><p align="left"></p>
-  <p><select name="question">
-  <option value="Slected your security">--------- select your question item ----------</option>
-  <option value="What's your mother's given name">What's your mother's given name</option>
-  <option value="what's your pet's name">what's your pet's name</option>
-  <option value="What's your favorite food">What's your favorite food</option>
-  <option value="What's your favorite sport">What's your favorite sport</option>
-  <option value="What's your favorite color">What's your favorite color</option>
-  </select>
-</p></td>
+<div class="jumbotron">
+  <div class="container text-center" align="left">
+    <form name="frmRegistration" method="post" action="save_register.php" autocomplete="off">
+ 
+
+<table border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="90" align="left">Full Name</td>
+    <td width="367">:
+	<input type="hidden" name="upline" value="<?php print $upline_value;?>" />
+      <input type="text" class="demoInputBox" name="fullName"  placeholder="Enter Your Name*" align="right" required></td>
   </tr>
   <tr>
-<td><p align="left">Your Answer</p>
-  <p>
-  <input type="text" class="demoInputBox" name="answer_question"  placeholder="Enter Your Answer*" onkeyup="this.value = this.value.toUpperCase()">
-  </p>
-  </td>
-</tr>
-
-<tr>
-  <td>
-  <input type="checkbox" name="terms"> I accept Terms and Conditions <input type="submit" name="register-user" value="Register Now" class="btnRegister"></td>
-</tr>
+  <td width="90" align="left">Email Address</td>
+  <td width="367">:
+      <input type="text" class="demoInputBox" name="userEmail" placeholder="Your@email.com*" required></td>
+  </tr>
+  <tr>
+  <td width="90" align="left">Username</td>
+  <td width="367">:
+      <input type="text" class="demoInputBox" id="userid" name="userName" placeholder="Enter Your Username*" required></td>
+  </tr>
+  <tr>
+  <td></td>
+  <td width="90"  align="center"><em id="exist_username" style="display:none;color:red">( Username already exists )</em></td>
+  <td width="90" align="center"><em>( Username must all alphabet and no space )</em></td>
+  </tr>
+  <tr>
+  <td width="90" align="left">Password</td>
+  <td width="367">:
+      <input type="password" class="demoInputBox" name="password" value="" placeholder="Your Strong Password*" required></td>
+  </tr>  
+  <tr>
+  <td width="90" align="left">Confirm Password</td>
+  <td width="367">:
+      <input type="password" class="demoInputBox" name="confirm_password" value="" placeholder="Password one more time*" required>
+   </td>
+   </tr>  
+  <tr>
+  <td width="90" align="left">Your ethereum Address</td>
+  <td width="367">:
+      <input type="text" class="demoInputBox" id="eth_address" name="ethereum_address" placeholder="Ex: 0xe99356bde974bbe08721d77712168fa070aa8da4*" required></td>
+      <td align="center"><em id="emeth">( Invalid Etherium address )</em></td>
+  </tr>
+  <tr>
+  <td></td>
+    
+  </tr>
+  <td></td>
+  </tr>
+  <tr>
+    <td width="90" align="left" id="sec_ques">Secret question</td>
+    <td>:
+      <select name="question_sec" class="question">
+      <option value="Slected your security">-select your question item-</option>
+      <option value="What's your mother's given name">What's your mother's given name</option>
+      <option value="what's your pet's name">what's your pet's name</option>
+      <option value="What's your favorite food">What's your favorite food</option>
+      <option value="What's your favorite sport">What's your favorite sport</option>
+      <option value="What's your favorite color">What's your favorite color</option>
+    </select></td>
+  </tr>
+  <tr>
+  <td width="90" align="left">Secret answer</td>
+    <td>:
+     <input type="text" class="demoInputBox" name="answer_question"  placeholder="Enter Your Answer*" required></td>
+  </tr>
+    <tr>
+    <td><input type="checkbox" name="terms">
+    I accept Terms and Conditions</td>
+    <td><input type="submit" name="register-user" value="Register Now" class="btnRegister"></td>
+	</tr>
 </table>
 </form>
-</p>
+ </div>
+</div>
 </footer>
 </body>
 </html>

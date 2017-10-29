@@ -136,12 +136,14 @@ include('navigation.php');
   $(document).ready(function() {
     $( "#date_from" ).datepicker(
 	{
-		dateFormat: "yy-mm-dd"
+		dateFormat: "yy-mm-dd",
+		minDate: '2017-09-30'
 	});
 	$( "#date_to" ).datepicker(
 	{
 		dateFormat: "yy-mm-dd",
-		maxDate: '0'
+		maxDate: '0',
+		minDate: '2017-09-30'
 	});
 	
 	$('#frm-earning').submit(function(e){
@@ -154,7 +156,6 @@ include('navigation.php');
 			data:$(this).serialize(),
 			success:function(getdata)
 			{
-				console.log('masuk');
 				strhtml +='<table id="tbl_earning" class="table">';
 				strhtml +='<thead>';
 				strhtml +='<tr>';

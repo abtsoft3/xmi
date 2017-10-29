@@ -1,17 +1,46 @@
+<?php
+include('session_user.php');
+require_once("../koneksi.php");
+$db_handle = new koneksi();
+$conn=$db_handle->connectDB();
+$username = $_SESSION['username'];
+
+$query_amount_earnings = mysqli_query($conn,
+						"select ifnull(sum(te.earning_amount),0) as total_earning 
+								from tbl_deposit td, tbl_earning te 
+								where 
+						td.id_transaction_deposit = te.id_transaction_deposit
+									and td.username ='$username'
+										and te.earning_type=1");
+$results_amount_earnings = mysqli_fetch_assoc($query_amount_earnings);
+
+//total downline
+$query_total_ref ="select count(username) as total_downline from tbl_register where upline='$username'";
+$execute_total_ref = mysqli_query($conn,$query_total_ref);
+$get_total_ref = mysqli_fetch_assoc($execute_total_ref);
+//total downline aktif
+$query_aktif_downline = "select count(id_earnings_transaction) 
+as total_active from tbl_earning te,tbl_deposit td where 
+te.id_transaction_deposit = td.id_transaction_deposit 
+AND
+te.earning_type=1
+AND td.username ='$username'";
+$execute_total_downline = mysqli_query($conn,$query_aktif_downline);
+$get_total_downline = mysqli_fetch_assoc($execute_total_downline);
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Member Area</title>
+  <title>Referrals</title>
   <!-- Bootstrap core CSS-->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="../css/sb-admin.css" rel="stylesheet">
 </head>
@@ -25,68 +54,40 @@
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="index.html">Referrals</a>
+          <a href="referrals.php">Referrals</a>
         </li>
       </ol>
       <div class="row">
-        <div class="col-12">
-			<div class="col-xl-3 col-sm-6 mb-3">
-			  <div class="card text-white bg-primary o-hidden h-100">
-				<div class="card-body">
-				  <div class="card-body-icon">
-					<i class="fa fa-fw fa-comments"></i>
-				  </div>
-				  <div class="mr-5">26 New Messages!</div>
-				</div>
-				<a class="card-footer text-white clearfix small z-1" href="#">
-				  <span class="float-left">View Details</span>
-				  <span class="float-right">
-					<i class="fa fa-angle-right"></i>
-				  </span>
-				</a>
-			  </div>
-        </div>
+        <div class="col-lg-8 col-sm-12 col-xs-12">
+			<table class="table">
+						<thead>
+							<tr class="table-warning">
+								<th>Your Upline</th>
+								<th>Total Referrals</th>
+								
+							</tr>
+							<tr>
+								<th><?php print $_SESSION['upline'];?></th>
+								<th><?php print $get_total_ref['total_downline'];?></th>
+							</tr>
+							
+							<tr class="table-warning">
+								<th>Referrals Earning</th>
+								<th>Active Referrals</th>
+							</tr>
+							<tr>
+								<th><?php print number_format($results_amount_earnings['total_earning'],8);?></th>
+								<th><?php print $get_total_downline['total_active'];?></th>
+							</tr>
+						</thead>
+						
+				</table>
         </div>
       </div>
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
-    <footer class="sticky-footer">
-      <div class="container">
-        <div class="text-center">
-          <small>Copyright © Your Website 2017</small>
-        </div>
-      </div>
-    </footer>
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fa fa-angle-up"></i>
-    </a>
-    <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin.min.js"></script>
+      <?php include('footer.php'); ?>
   </div>
 </body>
 

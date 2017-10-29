@@ -1,0 +1,19 @@
+PasswordnyaApa2017 login cpanel
+P@sswordnya@apa2017 login ftp
+
+--list task
+* operator read data deposit dan with draw
+* operator last login
+* operator 
+
+-- member area
+* link referral
+* setting
+& withdrawals
+
+*forget password
+*password min 6 character
+
+bonekmani4
+
+

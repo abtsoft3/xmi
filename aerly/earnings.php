@@ -107,7 +107,7 @@ include('navigation.php');
     <td>&nbsp;</td>
     <td colspan="2"><font color="#999999" font face="Times New Roman, Times, serif"><h4> Total:</h4></font> <p>
       <img src="../Gambar/471px-Ethereum_logo_2014.svg.png" width="13" height="22" /> &nbsp;  
-		<strong><?php print $results_amount_earnings['total_earning'];?></strong>
+		<strong><?php print number_format($results_amount_earnings['total_earning'],8);?></strong>
     </td>
 	<td colspan="2"><font color="#999999" font face="Times New Roman, Times, serif"><h4> Total Until ICO:</h4></font> <p>
       <img src="../Gambar/471px-Ethereum_logo_2014.svg.png" width="13" height="22" /> &nbsp;  
@@ -133,8 +133,8 @@ include('navigation.php');
     <td>&nbsp;</td>
     <td><font color="#999999" font face="Times New Roman, Times, serif">
       <h4> Date From :</h4></font> <p>
-	  <input readonly='true' type="text" name="date-from" id="date_from"
-		value="<?php print date('Y-m-d', strtotime($results_amount_earnings['date_time_spend']));?>" required/>
+	  <input readonly='true' type="text" name="date-from" id="date_from" value="<?php print date('Y-m-d');?>"
+	  required/>
 	  </td>
 	  <td>&nbsp;</td>
     <td><font color="#999999" font face="Times New Roman, Times, serif">
@@ -162,12 +162,14 @@ include('navigation.php');
   $(document).ready(function() {
     $( "#date_from" ).datepicker(
 	{
-		dateFormat: "yy-mm-dd"
+		dateFormat: "yy-mm-dd",
+		minDate: '2017-09-30'
 	});
 	$( "#date_to" ).datepicker(
 	{
 		dateFormat: "yy-mm-dd",
-		maxDate: '0'
+		maxDate: '0',
+		minDate: '2017-09-30'
 	});
 	
 	$('#frm-earning').submit(function(e){

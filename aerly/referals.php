@@ -104,7 +104,7 @@ include('navigation.php');
     <td><font color="#999999" font face="Times New Roman, Times, serif">
       <h4>Referral Earnings:</h4></font> 
 	  <p><img src="../Gambar/471px-Ethereum_logo_2014.svg.png" alt="" width="13" height="22" /> 
-	  &nbsp; <?php print $results_amount_earnings['total_earning'];?></td>
+	  &nbsp; <?php print number_format($results_amount_earnings['total_earning'],8);?></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

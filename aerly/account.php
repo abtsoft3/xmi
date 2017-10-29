@@ -70,7 +70,6 @@ $root_url = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['H
 	border: #a9a9a9 1px solid;
 	border-radius: 5px;
 }
-	
 </style>		
 </head>
 <body>

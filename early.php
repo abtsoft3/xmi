@@ -1,13 +1,125 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Minion Coin</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+	<title>MINION COIN</title>
+	<meta name="description" content="Cardio is a free one page template made exclusively for Codrops by Luka Cvetinovic" />
+	<meta name="keywords" content="html template, css, free, one page, gym, fitness, web design" />
+        <meta content='width=device-width' name='viewport'/>
+	<meta name="author" content="Luka Cvetinovic for Codrops" />
+	<!-- Favicons (created with http://realfavicongenerator.net/)-->
+	<link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
+	<link rel="icon" type="image/png" href="img/favicons/favicon-32x32.png" sizes="32x32">
+	<link rel="icon" type="image/png" href="img/favicons/favicon-16x16.png" sizes="16x16">
+	<link rel="manifest" href="img/favicons/manifest.json">
+	<link rel="shortcut icon" href="img/favicons/favicon.ico">
+	<meta name="msapplication-TileColor" content="#00a8ff">
+	<meta name="msapplication-config" content="img/favicons/browserconfig.xml">
+	<meta name="theme-color" content="#ffffff">
+	<!-- Normalize -->
+	<link rel="stylesheet" type="text/css" href="css/normalize.css">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<!-- Owl -->
+	<link rel="stylesheet" type="text/css" href="css/owl.css">
+	<!-- Animate.css -->
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.1.0/css/font-awesome.min.css">
+	<!-- Elegant Icons -->
+	<link rel="stylesheet" type="text/css" href="fonts/eleganticons/et-icons.css">
+	<!-- Main style -->
+	<link rel="stylesheet" type="text/css" href="css/cardio.css">
+    
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
   
-  <style>
+<style>
+   /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      background-color: #f2f2f2;
+      padding: 15px;
+    }
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+.minionLogo .header-text img{
+    width: initial;
+    max-width: 100%;
+    height: auto;
+}
+  .responsive img {
+    max-width:100%;
+	min-width:50%;
+    /*width:100%;*/
+    height: auto;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    border: none;
+    text-align: left;
+    padding: 8px;
+}
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
@@ -33,198 +145,152 @@
 	color: #027506;
 	border-radius: 4px;
 }
-.demo-table-logo {
-	width: 70%;
-	margin-top:1px;
-	text-align:center;
-	color:#666;
-	border-radius: 14px;
-	padding: 1px 14px;
+.demo-table td {
+	padding: 1px 0px 0px 0px;
 }
 .demo-table {
-	width: 70%;
-	margin-top:200px;
+	width: 10%;
+	margin-left:450px;
 	text-align:center;
 	color:#666;
 	border-radius: 14px;
-	padding: 1px 14px;
+	padding: 10px 14px;
 }
-div.gallery {
-    border: 1px solid #ccc;
+.demoInputBox {
+	padding: 10px 100px;
+	border: #a9a9a9 1px solid;
+	border-radius: 14px;
 }
-
-div.gallery:hover {
-    border: 1px solid #777;
+.btnRegister {
+	padding: 10px 30px;
+	background-color: #FC0;
+	border: 0;
+	color: #FFF;
+	cursor: pointer;
+	border-radius: 4px;
+	margin-left: 10px;
 }
-
-div.gallery img {
-    width: 100%;
-    height: auto;
+.btnSingUup {
+	padding: 10px 30px;
+	background-color: #FC0;
+	border: 0;
+	color: #FFF;
+	cursor: pointer;
+	border-radius: 4px;
+	margin-left: 10px;
 }
-
-div.desc {
-    padding: 15px;
-    text-align: center;
+  small {
+	font-size: 9px;
 }
-
-* {
-    box-sizing: border-box;
-}
-
-.responsive {
-    padding: 0 6px 0 50px;
-    float: left;
-    width: 30%;
-}
-
-@media only screen and (max-width: 700px){
-    .responsive {
-        width: 35%;
-        margin: 10px 0;
-    }
-}
-
-@media only screen and (max-width: 500px){
-    .responsive {
-        width: 100%;
-    }
-}
-
-.clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-footer {
-                clear: both;
-				width:100%;
-				background-color:#FFFFFF;
-            }
-section#content {
-                float:left;
-				background-color:#FC0;
-                height: 550px;
-                width: 100%
-       }
-
-#slidecontainer {
-    width: 100%;
-}
-
-.slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 25px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-}
-
-.slider:hover {
-    opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background: #333;
-    cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    background: #333;
-    cursor: pointer;
-}</style>
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
 </head>
-<body background="Gambar/bg1atas.png">
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-      <li><a href="index.php"><span class=""></span> Home</a></li>
-      	<li><a href="airdrop.php"><span class=""></span> Airdrop_compaign</a></li>
-         <li><a href="early.php"><span class=""></span> Early_Investment</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<img src="Gambar/minion-coin.png" /> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="Gambar/TimeICO.png" />
-<h2 align="center">Invest Now And  <font color="#FFCC00"><a href="login_conf.php">Become a Minionaire</a></font></blink></h2>
-<h4 align="center">The Earlier You Invest ... The Bigger Payout You Receive</h4><br />
 
-<div class="responsive">
-  <div class="gallery">
-      <img src="Gambar/kotak1.png" height="584" width="415">
-    <div class="desc"><table width="320" border="0">
+<body>
+	<div class="preloader">
+	<img src="img/loader.gif" alt="Preloader image">
+	</div>
+<div class="topnav" id="myTopnav">
+  <ul class="nav navbar-nav navbar-right">
+  <a href="index.php">Home</a>
+  <a href="airdrop.php"> Airdrop_compaign</a>
+  <a href="early.php">Early_Investment</a>
+  <a href="log_in.php">Login</a>
+  <a href="register.php">Signup</a>
+  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+
+</div>
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+	</div>
+		<!-- /.container-fluid -->
+	</nav>
+	<header id="intro">
+		<div class="container">
+			<div class="table">
+				<div class="header-text">
+					<div class="row">
+<span class="responsive"><img src="img/minion-coin.png"></span>
+                       		<h1 class="white typed">Invest Now And  <font color="#FFCC00"><a href="login_conf.php">Become a Minionaire</a></font></h1><span class="typed-cursor">|</span>
+							<h3 class="light white">The Earlier You Invest ... The Bigger Payout You Receive</h3>
+                            <span class="responsive"><img src="img/Flip-Clock.png"></span>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<section id="team" class="section gray-bg">
+		<div class="container">
+			<div class="row title text-center">
+			</div>
+			<div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img src="img/team/team-cover1.jpg" alt="" width="300" height="420" class="card-img-top"></a>
+                <div class="card-body">
+                  <h4 class="card-title"><table width="320" border="0">
   <tr>
     <td colspan="3">
     	<div id="slidecontainer">
   <input type="range" min="0.01" max="1" step="0.01" value="50" class="slider" id="myRange1">
 </div>
-	</td>
+		</td>
     </tr>
   <tr>
-    <td width="143" align="left">AMOUNT</td>
-    <td width="125" align="">
-    <span id="demo1"></span>
-	</td>
+     <td width="143" align="left"><strong>AMOUNT</strong></td>
+    <td width="125" align="center"><strong>
+    <span id="demo1"></span></strong>
+  </td>
     <td width="30"><strong>ETH</strong></td>
   </tr>
   <tr>
-    <td align="left">MAX PAYOUT</td>
-    <td><span id="totalPO1"></span></td>
+    <td align="left"><strong>MAX PAYOUT</strong></td>
+    <td><strong><span id="totalPO1"></span></strong></td>
     <td><strong>ETH</strong></td>
   </tr>
 </table>
-</div>
-  </div>
-</div>
-
-
-<div class="responsive">
-  <div class="gallery">
-      <img src="Gambar/kotak2.png" width="415" height="584">
-    
-    <div class="desc"><table width="320" border="0">
+                </div>
+						
+					</div>
+				</div>
+		  <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img src="img/team/team-cover2.jpg" alt="" width="300" height="420" class="card-img-top"></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                  <table width="320" border="0">
   <tr>
     <td colspan="3"><div id="slidecontainer">
   <input type="range" min="1.01" max="3" step="0.01" value="50" class="slider" id="myRange2">
-</div></td>
+</div>
+		</td>
     </tr>
   <tr>
-    <td width="143" align="left">AMOUNT</td>
-    <td width="125" align="center">
-    <span id="demo2"></span>
-
-</td>
+    <td width="143" align="left"><strong>AMOUNT</strong></td>
+    <td width="125" align="center"><strong>
+    <span id="demo2"></span></strong>
+  </td>
     <td width="30"><strong>ETH</strong></td>
   </tr>
   <tr>
-    <td align="left">MAX PAYOUT</td>
-    <td>&nbsp;</td>
+    <td align="left"><strong>MAX PAYOUT</strong></td>
+    <td><strong><span id="totalPO2"></span></strong></td>
     <td><strong>ETH</strong></td>
   </tr>
-</table></div>
-  </div>
-</div>
-
-<div class="responsive">
-  <div class="gallery">
-      <img src="Gambar/kotak-3.png" width="415" height="584">
-    <div class="desc"><table width="320" border="0">
+</table>
+                </div>
+						
+					</div>
+				</div>
+		  <div class="col-lg-4 col-md-6 mb-4">
+              <div class="card h-100">
+                <a href="#"><img src="img/team/team-cover3.jpg" alt="" width="300" height="420" class="card-img-top"></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                  <table width="320" border="0">
   <tr>
     <td colspan="3">
     <div id="slidecontainer">
@@ -233,97 +299,201 @@ section#content {
         </td>
     </tr>
   <tr>
-    <td width="143" align="left">AMOUNT</td>
-    <td width="125" align="center"><span id="demo3"></span>
+    <td width="143" align="left"><strong>AMOUNT</strong></td>
+    <td width="125" align="center"><strong><span id="demo3"></span></strong>
     
 	</td>
     <td width="30"><strong>ETH</strong></td>
   </tr>
   <tr>
-    <td align="left">MAX PAYOUT</td>
-    <td>&nbsp;</td>
+    <td align="left"><strong>MAX PAYOUT</strong></td>
+    <td><strong><span id="totalPO3"></span><strong></td>
     <td><strong>ETH</strong></td>
   </tr>
-</table></div>
+</table>
+                </div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="pricing" class="section">
+		<div class="container">
+			<div class="row title text-center">
+				<h3><font color="#FFFFFF">The supply will be fixed at the beginning and no mining with possible after the initial contract setup.
+
+The purpose of early investment program is to grant priority and early access to those who participated in the event. Minion Coins are not an equity represantation of the company.
+
+Minion Coin will be set at a fixed rate of 1 Minion Coin (MINC) = 0,01 ETH (1 ETH = 100 MINC). Hard Cap is set at 150000 ETH. With that sum we would be able to develop the platform, incentivize the production of original content and deploy a worldwide marketing strategy. 
+
+Minimum CAP of 5000 ETH would let us develop the platform, incentivize content and build up a digital marketing and communication campaign. In case of not reaching the soft cap, all the investment funds will be returned</font></h3>
+			</div>
+				</div>
+			</div>
+		</div>
+	</section>
+<div class="row">
+        <div class="col-sm-7">
+          <div class="well">
+           <p><h2>ALLOCATION OF INVESTMENT</h2></p>
+           <img src="img/diagram.png" height="343" width="343" alt="Avatar"> <img src="img/diagram_Kt.png">
+          </div>
+        </div>
+        <div class="col-sm-5">
+          <div class="well">
+            <p class="wadah-mengetik" align="center"><font face="fontawesome"><h3>MINION COIN PURELY RELIES ON DECENTRALIZATION 
+WHICH MEANS COINS HOLD  NO ACTUAL VALUE UNLESS 
+PEOPLE BOOST ITS VALUE  BY INVESTING. AND THEREFORE,
+WE WOULD LIKE TO INVITE  ALL INVESTORS & DONATORS 
+TO HELP MAKE MINIONCOIN ICO HAPPEN!
+<br></h3></font></p>
+</br>
+</br>
+<p>&nbsp;</p>
+
+<table width="350" border="0">
+  <tr>
+    <td width="150"><font face="sans serif"><h4><strong>Total Minionaire</strong></h4></font></td>
+    <td width="150"><font face="sans serif"><h4><strong>Total Invested</strong></h4></td>
+</tr>  
+<tr>
+    <td><font face="sans serif"><h4>106</h4></td>
+    <td><font face="sans serif"><h4>ETH 83.4127853</h4></td>
+</tr>
+<tr>
+    <td><font face="sans serif"><h4><strong>Total Payout</stronge></h4></font></td>
+    <td><font face="sans serif"><h4><strong>Running Days</stronge></h4></font></td>
+</tr>
+<tr><td><font face="sans serif"><h4>1.67358201</h4></font></td>
+    <td><font face="sans serif"><h4>3 Day</h4></font></td>
+  </tr>
+</table>
+          </div>
+        </div>
+      </div>     
+    </div>
+
+
+    
+    
+    <div class="container text-center">    
+  <h3>OUR CAPITAL VENTURER :</h3>
+  <br>
+  <div class="row">
+    <div class="col-sm-2">
+      <img src="img/MCDLOGO.jpg" class="img-responsive" style="width:100%" alt="Image">
+
+    </div>
+    <div class="col-sm-2"> 
+      <img src="img/american-express-logo-wallpaper.jpg" class="img-responsive" style="width:100%" alt="Image">
+  
+    </div>
+    <div class="col-sm-2"> 
+      <img src="img/Berkshire-Hathaway-Logo.png" class="img-responsive" style="width:100%" alt="Image">
+
+    </div>
+    <div class="col-sm-2"> 
+      <img src="img/catalinalogo.png" class="img-responsive" style="width:100%" alt="Image">
+
+    </div> 
+    <div class="col-sm-2"> 
+      <img src="img/Universal_Studios_Logo.png" class="img-responsive" style="width:100%" alt="Image">
+
+    </div>     
+    <div class="col-sm-2"> 
+      <img src="img/Illumination-Entertainment-336x124.png" class="img-responsive" style="width:100%" alt="Image">
+
+    </div> 
+    <div class="col-sm-2"> 
+      <img src="img/bellagio_hotel_logo.gif" class="img-responsive" style="width:100%" alt="Image">
+
+    </div> 
+    <div class="col-sm-2"> 
+      <img src="img/wells-fargo.jpg" class="img-responsive" style="width:100%" alt="Image">
+
+    </div> 
+    <div class="col-sm-2"> 
+      <img src="img/p2_508946.jpg" class="img-responsive" style="width:100%" alt="Image">
+
+    </div> 
   </div>
-</div>
+</div><br>
 
-<div class="clearfix"></div>
 
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <br />
-  <p>
-  <section id="content"><h1 align="center"><font color="#FFFFFF"><strong>MINION COIN PURELY RELIES ON DECENTRALIZATION WHICH MEANS COINS HOLD NO ACTUAL VALUE UNLESS PEOPLE BOSST ITS VALUE BY INVESTING. AND THEREFORE, WE WOULD LIKE TO INVITE ALL INVESTORS & DONATORS TO HELP MAKE MINIONCOIN ICO HAPPEN!</strong></font></h1><br />
-  <h2 align="left">WHY ETHEREUM ?</h2><br />
-  <h3 align="center"><font color="#FFFFFF">The creation of Enterprise Ethereum Alliance (EEA) - News - Enterprise Ethereum 
-Alliance consisting of many global major banks and companies such as: Accenture,
-Banco Santander, BlockApps, BNY Mellon, CME Group, ConsenSys, IC3, Intel,
- J.P. Morgan, Microsoft, and Nuco.</font></h3></footer>
-
-<footer>
- 	<img src="Gambar/sp.png" />
-    <br />
-    <br />
-    <br />
- <p><h1 align="center"><font color="#666666"> <font face="Times New Roman, Times, serif">OUR CAPITAL VENTURER</font></font></h1> </p>
-    <br />
-  	<br />
-    <p align="center">
-  <img src="Gambar/catalinalogo.png" width="345" height="306" /> &nbsp; <img src="Gambar/bellagio_hotel_logo.gif" width="330" height="265" /> &nbsp;<img src="Gambar/american-express-logo-wallpaper.jpg" width="360" height="300"/> &nbsp; <br /><p><img src="Gambar/MCDLOGO.jpg" height="287" width="304" /> &nbsp; <img src="Gambar/Berkshire-Hathaway-Logo.png" width="617" height="280" /> &nbsp; <img src="Gambar/wells-fargo.jpg" width="200" height="200" /> &nbsp; <img src="Gambar/p2_508946.jpg" height="184"  width="615"/> &nbsp;<img src="Gambar/Universal_Studios_Logo.png" width="385" height="243" /><img src="Gambar/Illumination-Entertainment-336x124.png" height="124" width="336" />&nbsp; </p>
- 
- 
-</footer>
-
-</div>
-</div>
-<script type='text/javascript'>
+	<!-- Holder for mobile navigation -->
+	<div class="mobile-nav">
+		<ul>
+		</ul>
+	</div>
+	<!-- Scripts -->
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/typewriter.js"></script>
+	<script src="js/jquery.onepagenav.js"></script>
+	<script src="js/main.js"></script>
+    
+    
+    
+    <script>
 var slider1 = document.getElementById("myRange1");
 
 var output1 = document.getElementById("demo1");
 var totalPO1_value = document.getElementById("totalPO1");
-totalPO1_value.innerHTML = (slider1.value *0.05).toFixed(6);
+totalPO1_value.innerHTML = (slider1.value *0.05 *144).toFixed(6);
 output1.innerHTML = slider1.value;
 
 
 slider1.oninput = function() {
 	
   output1.innerHTML = this.value;
-  totalPO1_value.innerHTML = (this.value * 0.05).toFixed(6);
-}
-
-var slider2 = document.getElementById("myRange2");
-var output2 = document.getElementById("demo2");
-output2.innerHTML = slider2.value;
-
-slider2.oninput = function() {
-  output2.innerHTML = this.value;
-  
-}
-
-var slider3 = document.getElementById("myRange3");
-var output3 = document.getElementById("demo3");
-output3.innerHTML = slider3.value;
-
-slider3.oninput = function() {
-  output3.innerHTML = this.value;
-  
+  totalPO1_value.innerHTML = (this.value * 0.05 *144).toFixed(6);
 }
 </script>
+<script>
+var slider2 = document.getElementById("myRange2");
+
+var output2 = document.getElementById("demo2");
+var totalPO2_value = document.getElementById("totalPO2");
+totalPO2_value.innerHTML = (slider2.value *0.05 *144).toFixed(6);
+output2.innerHTML = slider2.value;
+
+
+slider2.oninput = function() {
+	
+  output2.innerHTML = this.value;
+  totalPO2_value.innerHTML = (this.value * 0.05* 144).toFixed(6);
+}
+</script>
+<script>
+var slider3 = document.getElementById("myRange3");
+
+var output3 = document.getElementById("demo3");
+var totalPO3_value = document.getElementById("totalPO3");
+totalPO3_value.innerHTML = (slider3.value *0.05* 144).toFixed(6);
+output3.innerHTML = slider3.value;
+
+
+slider3.oninput = function() {
+	
+  output3.innerHTML = this.value;
+  totalPO3_value.innerHTML = (this.value * 0.05 * 144).toFixed(6);
+}
+
+</script>
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+
 </body>
+
 </html>

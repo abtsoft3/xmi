@@ -1,4 +1,12 @@
 <?php
+$count=0;
+for($i=1;$i<=5;$i++)
+{
+	$count+=$i;
+	
+}
+print $count;
+/*
 session_start(); //MUST START SESSION 
 $string_length = 6; //NUMBER OF CHARS TO DISPLAY 
 $large_letters = array('m','w');
@@ -68,5 +76,5 @@ $_SESSION['encoded_captcha'] = md5($rand_string . 'my_secret_key');
   
 //OUTPUT IMAGE HEADER AND SEND TO BROWSER 
 header("Content-Type: image/png"); 
-imagepng($img); 
+imagepng($img); */
 ?>

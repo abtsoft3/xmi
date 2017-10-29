@@ -8,13 +8,11 @@ if(isset($_REQUEST["SPEND"])) {
 	/* Form Required Field Validation */
 	foreach($_POST as $key=>$value) {
 		if(empty($_POST[$key])) {
-		print '<script type="text/javascript">alert("Invalid Input");location.reload();</script>';
-		$error_message='error';
+		print '<script type="text/javascript">alert("Invalid Input");window.location.href=aerly2.php;</script>';
 		break;
 		}
 	}
-
-	if(!isset($error_message)) {
+	
 		$tx_id = mysqli_real_escape_string($conn,$_POST["tx_id"]);
 		$amount_spend = floatval(mysqli_real_escape_string($conn,$_POST["amount_spend"]));
 		$query_insert = "INSERT INTO tbl_deposit
@@ -26,41 +24,41 @@ if(isset($_REQUEST["SPEND"])) {
 						,'$tx_id'
 						,'$amount_spend')";
 		$result = mysqli_query($conn,$query_insert);
-		if(!empty($result)) {
+		if($result) {
 			$id_transaction_deposit = mysqli_insert_id($conn);			
+			
+			$begin = new DateTime(date('Y-m-d'));
+			 $end = new DateTime('2018-03-19');// date ico
+			$daterange = new DatePeriod($begin, new DateInterval('P1D'), $end);
+			
+			$query_insert_earning="";
+			$earning_amount=0;
+			$counter=1;
+			$percentage_earning=1;
 		
-		$begin = new DateTime(date('Y-m-d'));
-		 $end = new DateTime('2018-03-19');// date ico
-		$daterange = new DatePeriod($begin, new DateInterval('P1D'), $end);
-		
-		$query_insert_earning="";
-		$earning_amount=0;
-		$counter=1;
-		$percentage_earning=1;
-		
-		//insert upline earning jika ada uplline
-		$upline_username =$_SESSION['upline'];
-		if( $upline_username!= 'NONE')
-		{
-			$query_get_id_deposit_upline = mysqli_query($conn,"select max(id_transaction_deposit) as maxid
-				from tbl_deposit where username ='$upline_username'");
-			$earning_amount_upline = (8/100) * $amount_spend;
-			$get_id_deposit_upline = mysqli_fetch_assoc($query_get_id_deposit_upline);
-			$upline_id_transaction = $get_id_deposit_upline['maxid'];
-			$query_insert_earning= "INSERT INTO tbl_earning
-						(id_transaction_deposit
-						,earning_amount
-						,earning_date
-						,percentage_earning
-						,earning_type
-						) values 
-						('$upline_id_transaction'
-						,'$earning_amount_upline'
-						,NOW()
-						,8
-						,1)";
-			$db_handle->insertQuery($query_insert_earning);
-		}
+			//insert upline earning jika ada uplline
+			$upline_username =$_SESSION['upline'];
+			if( $upline_username!= 'NONE')
+			{
+				$query_get_id_deposit_upline = mysqli_query($conn,"select max(id_transaction_deposit) as maxid
+					from tbl_deposit where username ='$upline_username'");
+				$earning_amount_upline = (8/100) * $amount_spend;
+				$get_id_deposit_upline = mysqli_fetch_assoc($query_get_id_deposit_upline);
+				$upline_id_transaction = $get_id_deposit_upline['maxid'];
+				$query_insert_earning= "INSERT INTO tbl_earning
+							(id_transaction_deposit
+							,earning_amount
+							,earning_date
+							,percentage_earning
+							,earning_type
+							) values 
+							('$upline_id_transaction'
+							,'$earning_amount_upline'
+							,NOW()
+							,8
+							,1)";
+				$db_handle->insertQuery($query_insert_earning);
+			}
 		
 		if($amount_spend <= 6.0 && $amount_spend >= 3.01)
 		{
@@ -154,7 +152,6 @@ if(isset($_REQUEST["SPEND"])) {
 			print '<script type="text/javascript">alert("Problem when saving");window.history.back();</script>';
 		}
 		
-	}
 }
 $query_amount = mysqli_query($conn,
 				"select IFNULL(sum(amount_spend),0) as Total_Spend 
@@ -261,7 +258,7 @@ include('navigation.php');
     <td>&nbsp;</td>
     <td>
 	<img src="../Gambar/471px-Ethereum_logo_2014.svg.png" width="8" height="15" />
-	<font color="#000000" font face="Times New Roman, Times, serif"> &nbsp; &nbsp; 0.001 - 1.00 </font></td>
+	<font color="#000000" font face="Times New Roman, Times, serif"> &nbsp; &nbsp; 0.01 - 1.00 </font></td>
     <td>&nbsp;</td>
     <td><font color="#000000" font face="Times New Roman, Times, serif">5% Maximum</font></td>
     <td>&nbsp;</td>
@@ -271,7 +268,7 @@ include('navigation.php');
     <td>&nbsp;</td>
     <td>
 	<img src="../Gambar/471px-Ethereum_logo_2014.svg.png" width="8" height="15" />
-	<font color="#000000" font face="Times New Roman, Times, serif"> &nbsp; &nbsp; 1.010 - 3.00 </font></td>
+	<font color="#000000" font face="Times New Roman, Times, serif"> &nbsp; &nbsp; 1.01 - 3.00 </font></td>
     <td>&nbsp;</td>
     <td><font color="#000000" font face="Times New Roman, Times, serif">10% Maximum</font></td>
     <td>&nbsp;</td>
@@ -281,7 +278,7 @@ include('navigation.php');
     <td>&nbsp;</td>
     <td>
 	<img src="../Gambar/471px-Ethereum_logo_2014.svg.png" width="8" height="15" />
-	<font color="#000000" font face="Times New Roman, Times, serif"> &nbsp; &nbsp; 3.010 - 6.00 </font></td>
+	<font color="#000000" font face="Times New Roman, Times, serif"> &nbsp; &nbsp; 3.01 - 6.00 </font></td>
     <td>&nbsp;</td>
     <td><font color="#000000" font face="Times New Roman, Times, serif">15% Maximum</font></td>
     <td>&nbsp;</td>
@@ -298,7 +295,7 @@ include('navigation.php');
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td colspan="3"><p align="left">Amount To Spend</p>
-        <input type="number" class="demoInputBox" name="amount_spend" value="0.001" step='0.001' min="0.001" max="6.00" required>
+        <input type="number" class="demoInputBox" name="amount_spend" value="0.01" step='0.001' min="0.01" max="6.00" required>
         </p>
       </td>
     <td>&nbsp;</td>

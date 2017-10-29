@@ -18,9 +18,11 @@ if(isset($_POST['amount_withdraw']))
 		
 		$insert = "insert into tbl_with_draw 
 			(username
-			,amount_withdraw) values
+			,amount_withdraw
+			,status) values
 			('$username'
-			,'$amount_withdraw')";
+			,'$amount_withdraw'
+			,0)";
 		$execute = mysqli_query($conn,$insert);
 		if($execute)
 		{

@@ -147,10 +147,11 @@ include('navigation.php');
   <form action="save_with_draw.php" method="post" id="frm_wdw">
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td><input type='number' name='amount_withdraw' step="0.001" min="0" 
+    <td><input type='number' 
+	value='<?php print $results_amount_earnings['total_earning']+$results_amount_earnings_referal['total_earning'];?>' 
+	name='amount_withdraw' step="0.0000001" min="-1" 
 	max="<?php print $results_amount_earnings['total_earning']+$results_amount_earnings_referal['total_earning'];?>" required/></td>
-    <td><button type="submit" class="button_wd">Whitdraw</button>
-		
+    <td>&nbsp; <button type="submit" class="btn btn-success"> Withdraw</button>
 		</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
