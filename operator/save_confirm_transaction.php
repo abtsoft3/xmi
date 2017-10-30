@@ -41,8 +41,9 @@ isset($_POST['amount_spend']))
 					$db_handle->insertQuery($query_insert_earning);
 				}
 				
-				$now = strtotime(date("Y-m-d H:i:s"));
-				$begin = new DateTime(date('Y-m-d H:i:s', strtotime('+1 day', $now)));
+				$now = strtotime(date("2017-10-29 10:10:10"));
+				//$begin = new DateTime(date('Y-m-d H:i:s', strtotime('+1 day', $now)));
+				$begin = new DateTime(date('Y-m-d H:i:s', $now));
 				$end = new DateTime('2018-03-19 12:00:00');// date ico
 				$daterange = new DatePeriod($begin, new DateInterval('P1D'), $end);
 				

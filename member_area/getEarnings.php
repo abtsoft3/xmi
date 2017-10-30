@@ -13,7 +13,7 @@ if(!empty($_GET['date_from']) && !empty($_GET['date_to']))
 	,te.percentage_earning
 	,DATE_FORMAT(te.earning_date,'%Y-%m-%d') as earning_date from tbl_deposit td, tbl_earning te
 where td.id_transaction_deposit = te.id_transaction_deposit 
-and td.username ='basri' 
+and td.username ='$username' 
 AND te.earning_date between '$date_from' and '$date_to' order by te.earning_date";
 	$execute = mysqli_query($conn,$query_get_data_earning);
 	$json_arr = array();

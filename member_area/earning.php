@@ -9,7 +9,7 @@ $query_amount_earnings = mysqli_query($db_handle->connectDB(),
 								from tbl_deposit td, tbl_earning te 
 								where 
 						td.id_transaction_deposit = te.id_transaction_deposit 
-							and te.earning_date <= DATE(NOW()) 
+							and te.earning_date < NOW() 
 									and td.username ='$username'");
 $results_amount_earnings = mysqli_fetch_assoc($query_amount_earnings);
 /*$query_amount_earnings = mysqli_query($db_handle->connectDB(),
@@ -83,7 +83,7 @@ $execute_wdw = mysqli_fetch_assoc($query_wdw);
        
       </ol>
       <div class="row">
-        <div class="col-lg-5 col-xs-12">
+        <div class="col-lg-8 col-xs-12">
           <h1>Earnings</h1>
 			<table class="table">
 						<thead>
@@ -143,7 +143,7 @@ $execute_wdw = mysqli_fetch_assoc($query_wdw);
 						
 				</table>
           </div>
-		  <div class="col-lg-7 col-xs-12">
+		  <div class="col-lg-8 col-xs-12">
 			<table id="tbl_earnings" class="table">
 				<thead>
 					<tr>

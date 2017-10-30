@@ -9,7 +9,7 @@ $query_amount_earnings = mysqli_query($db_handle->connectDB(),
 								from tbl_deposit td, tbl_earning te 
 								where 
 						td.id_transaction_deposit = te.id_transaction_deposit 
-							and te.earning_date <= DATE(NOW()) 
+							and te.earning_date < NOW() 
 									and td.username ='$username'");
 $results_amount_earnings = mysqli_fetch_assoc($query_amount_earnings);
 
